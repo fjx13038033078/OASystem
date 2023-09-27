@@ -14,7 +14,7 @@ import java.util.UUID;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author fanjiaxing
@@ -29,16 +29,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public Map<String, Object> login(User user) {
         //根据用户名和密码进行查询
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(User::getUaccount,user.getUaccount());
+        wrapper.eq(User::getUaccount, user.getUaccount());
 //        wrapper.eq(User::getUpassword,user.getUpassword());
         User loginUser = this.baseMapper.selectOne(wrapper);
-        if (loginUser != null){
+        if (loginUser != null) {
             //暂时用uuid，最终应该是jwt
-            String key = "user:"+UUID.randomUUID();
+            String key = "user:" + UUID.randomUUID();
             //存入redis
             //返回数据
             Map<String, Object> data = new HashMap<>();
-            data.put("token",key);
+            data.put("token", key);
             return data;
         }
         //结果不为空，生成一个token，并将用户信息传入redis
@@ -48,7 +48,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User getByAccount(User user) {
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(User::getUaccount,user.getUaccount());
+        wrapper.eq(User::getUaccount, user.getUaccount());
         User registerUser = this.baseMapper.selectOne(wrapper);
         return registerUser;
     }
