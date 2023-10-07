@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Map;
 
 
-@WebFilter(filterName = "jwtFilter",urlPatterns = "/user/*")
+@WebFilter(filterName = "jwtFilter",urlPatterns = "/secure/*")
 public class JwtFilterConfig implements Filter {
     private final Logger logger = LoggerFactory.getLogger(JwtFilterConfig.class);
 
