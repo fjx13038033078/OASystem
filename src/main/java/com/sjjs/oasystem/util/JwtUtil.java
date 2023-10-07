@@ -46,7 +46,7 @@ public class JwtUtil {
                 //可以把数据存在claim中
                 .withClaim("id",user.getUid())      //userId
                 .withClaim("account",user.getUaccount())
-                .withClaim("Name",user.getUname())
+                .withClaim("name",user.getUname())
                 .withExpiresAt(expireDate)          //超时设置,设置过期的日期
                 .withIssuedAt(new Date()) //签发时间
                 .sign(Algorithm.HMAC256(SECRET)); //SECRET加密

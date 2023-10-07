@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Map;
 
 
-@WebFilter(filterName = "jwtFilter",urlPatterns = "/secure/*")
+@WebFilter(filterName = "jwtFilter",urlPatterns = "/user/*")
 public class JwtFilterConfig implements Filter {
     private final Logger logger = LoggerFactory.getLogger(JwtFilterConfig.class);
 
@@ -48,13 +48,13 @@ public class JwtFilterConfig implements Filter {
             response.getWriter().write("token不合法！");
             return;
         }
-        Integer id = userData.get("id").asInt();
-        String name = userData.get("name").asString();
-        String userName = userData.get("userName").asString();
+        Integer uid = userData.get("uid").asInt();
+        String uname = userData.get("uname").asString();
+        String uaccount = userData.get("uaccount").asString();
         //拦截器 拿到用户信息，放到request中
-        request.setAttribute("id", id);
-        request.setAttribute("name", name);
-        request.setAttribute("userName", userName);
+        request.setAttribute("id", uid);
+        request.setAttribute("uname", uname);
+        request.setAttribute("uaccount", uaccount);
         filterChain.doFilter(servletRequest,servletResponse);
 
     }
