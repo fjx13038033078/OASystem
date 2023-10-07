@@ -32,6 +32,10 @@ public class JwtFilterConfig implements Filter {
         response.setCharacterEncoding("UTF-8");
         //获取header里的token
         String token=request.getHeader("authorization");
+//        // 如果token存在，则将其添加到Authorization标头中
+//        if (token != null) {
+//            request.setAttribute("Authorization", "Bearer " + token);
+//        }
         if ("OPTIONS".equals(request.getMethod())) {              //除了 OPTIONS请求以外, 其它请求应该被JWT检查
             response.setStatus(HttpServletResponse.SC_OK);
             filterChain.doFilter(request, response);
