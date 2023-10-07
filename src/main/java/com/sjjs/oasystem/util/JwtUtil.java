@@ -6,8 +6,9 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.sjjs.oasystem.entity.User;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.logging.Logger;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -18,9 +19,9 @@ import java.util.Map;
  * JWT工具类
  * 用于生成和校验token
  */
-
+@Component
 public class JwtUtil {
-    //private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
     /**
      * 秘钥
      */
@@ -61,8 +62,8 @@ public class JwtUtil {
             JWTVerifier verifier=JWT.require(Algorithm.HMAC256(SECRET)).build();
             jwt=verifier.verify(token);
         }catch (Exception e){
-//            logger.error(e.getMessage());
-//            logger.error("解析编码异常");
+            logger.error(e.getMessage());
+            logger.error("解析编码异常");
         }
 
         return jwt.getClaims();

@@ -4,6 +4,7 @@ import com.sjjs.common.vo.Result;
 import com.sjjs.oasystem.entity.User;
 import com.sjjs.oasystem.service.IUserService;
 import com.sjjs.oasystem.service.impl.UserServiceImpl;
+import com.sjjs.oasystem.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,10 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * <p>
@@ -35,6 +33,9 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @GetMapping("/all")
     public Result<List<User>> getAllUser() {
         List<User> list = userService.list();
@@ -52,8 +53,10 @@ public class UserController {
         if (passwordEncoder.matches(user.getUpassword(), userLogin.getUpassword())) {
             // 密码验证成功，可以生成令牌或执行其他操作
             // 生成令牌的代码可以在这里添加
-            //Map<String, Object> tokenData = generateTokenForUser(user);
-            return Result.success("登录成功", null);
+            String token = jwtUtil.createToken(userLogin);
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("token",token);
+            return Result.success("登录成功", responseData);
         } else {
             return Result.fail(20002, "密码错误");
         }
