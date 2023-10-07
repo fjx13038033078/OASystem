@@ -1,4 +1,4 @@
-package com.sjjs.util;
+package com.sjjs.oasystem.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
