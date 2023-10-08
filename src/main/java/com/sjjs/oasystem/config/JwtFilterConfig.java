@@ -52,11 +52,11 @@ public class JwtFilterConfig implements Filter {
             response.getWriter().write("token不合法！");
             return;
         }
-        Integer uid = userData.get("uid").asInt();
+        //Integer uid = userData.get("uid").asInt();
         String uname = userData.get("uname").asString();
         String uaccount = userData.get("uaccount").asString();
         //拦截器 拿到用户信息，放到request中
-        request.setAttribute("id", uid);
+        //request.setAttribute("id", uid);
         request.setAttribute("uname", uname);
         request.setAttribute("uaccount", uaccount);
         filterChain.doFilter(servletRequest,servletResponse);
