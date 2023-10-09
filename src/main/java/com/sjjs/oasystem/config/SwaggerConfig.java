@@ -39,7 +39,7 @@ public class SwaggerConfig {
                 .host("localhost:9999")
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("D:\\IdeaProject\\OASystem\\demo\\src\\main\\java\\com\\sjjs\\oasystem\\controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.sjjs.oasystem.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -50,7 +50,7 @@ public class SwaggerConfig {
                 .title(name) //标题
                 .version(version) //版本
                 .description("系统API描述") //简介
-                .contact(new Contact(author, "http://localhost:9999/swagger-ui.html", "c1111111c1@163.com"))
+                .contact(new Contact(author,"", "c1111111c1@163.com"))
                 .build();
     }
 }
