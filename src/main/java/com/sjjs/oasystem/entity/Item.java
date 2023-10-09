@@ -15,7 +15,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * 项目日志(SysItem)表实体类
+ * 项目日志(Item)表实体类
  */
 
 @Data
