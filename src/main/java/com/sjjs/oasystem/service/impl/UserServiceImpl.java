@@ -3,7 +3,7 @@ package com.sjjs.oasystem.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sjjs.oasystem.entity.User;
 import com.sjjs.oasystem.mapper.UserMapper;
-import com.sjjs.oasystem.service.IUserService;
+import com.sjjs.oasystem.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import java.util.UUID;
  * @since 2023-09-20
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     UserMapper userMapper;
 

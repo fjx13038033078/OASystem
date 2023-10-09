@@ -1,9 +1,8 @@
 package com.sjjs.oasystem.controller;
 
-import com.sjjs.common.vo.Result;
+import com.sjjs.oasystem.common.vo.Result;
 import com.sjjs.oasystem.entity.User;
-import com.sjjs.oasystem.service.IUserService;
-import com.sjjs.oasystem.service.impl.UserServiceImpl;
+import com.sjjs.oasystem.service.UserService;
 import com.sjjs.oasystem.util.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 import java.util.*;
 
@@ -34,7 +32,7 @@ public class UserController {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Autowired
     private JwtUtil jwtUtil;

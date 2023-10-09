@@ -13,7 +13,7 @@ import java.util.Map;
  * @author fanjiaxing
  * @since 2023-09-20
  */
-public interface IUserService extends IService<User> {
+public interface UserService extends IService<User> {
 
     Map<String, Object> login(User user);
 
