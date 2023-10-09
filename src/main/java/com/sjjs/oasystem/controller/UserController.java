@@ -5,6 +5,8 @@ import com.sjjs.oasystem.entity.User;
 import com.sjjs.oasystem.service.IUserService;
 import com.sjjs.oasystem.service.impl.UserServiceImpl;
 import com.sjjs.oasystem.util.JwtUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +27,7 @@ import java.util.*;
 //@CrossOrigin开发时临时解决跨域问题
 @CrossOrigin(origins = "http://localhost:8080",maxAge = 3600)
 @RestController
+@Api(value = "用户登录及注册", tags = {"用户登录及注册"})
 @RequestMapping("/user")
 public class UserController {
     private Set<String> tokenBlacklist = new HashSet<>();
@@ -42,6 +45,7 @@ public class UserController {
         return Result.success("查询成功", list);
     }
 
+    @ApiOperation("用户登录")
     @PostMapping("/login")
     public Result<Map<String, Object>> login(@RequestBody User user) {
         //Map<String,Object> data = userService.login(user);
@@ -62,6 +66,7 @@ public class UserController {
         }
     }
 
+    @ApiOperation("用户注册")
     @PostMapping("/register")
     public Result<Map<String, Object>> register(@RequestBody User user) {
         User checkUser = userService.getByAccount(user);
