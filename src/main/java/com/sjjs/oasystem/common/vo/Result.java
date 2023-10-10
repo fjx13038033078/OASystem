@@ -44,4 +44,8 @@ public class Result<T> {
         return new Result<>(20001,message,null);
     }
 
+    public static <T>  Result<T> fail(String message,T data){
+        return new Result<>(20001,message,data);
+    }
+
 }

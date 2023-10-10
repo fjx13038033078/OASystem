@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sjjs.oasystem.mapper.ItemMapper">
+    <insert id="insertItemList">
+        insert into sys_item (id, create_by, create_time, update_time, project_id) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id},#{item.createBy},#{item.createTime},#{item.updateTime},#{item.projectId})
+        </foreach>
+    </insert>
+    <update id="updateItemBo">
+        update sys_item set
+        <if test="item.createBy!=null">
+            create_by=#{item.createBy},
+        </if>
+        <if test="item.projectId!=null">
+            project_id=#{item.projectId},
+        </if>
+        <if test="item.createTime!=null">
+            create_Time=#{item.createTime},
+        </if>
+        <if test="item.updateTime!=null">
+            update_Time=#{item.updateTime},
+        </if>
+        id=#{item.id}
+        where id=#{item.id}
+
+    </update>
+
+    <select id="selectAllItem" resultType="com.sjjs.oasystem.entity.Item">
+        select si.id,
+               si.create_by,
+               si.create_time,
+               si.update_time,
+               si.project_id,
+               (select sp.process
+                from (select sp.* from sys_process sp where sp.is_process = 'YES') sp
+                where sp.project_id =
+                      si.project_id
+                group by sp.process
+                order by process
+                   limit 1)                       as status,
+               round((select sum(score) / count(*)
+                      from sys_score
+                      WHERE project_id = si.project_id
+                      group by project_id), 2) as score
+        from sys_Item si
+    </select>
+
+    <select id="getLastId" resultType="java.lang.Integer">
+        select si.id
+        from sys_item si
+        order by id desc
+            limit 1
+    </select>
+
+
+</mapper>
