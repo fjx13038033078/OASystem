@@ -14,8 +14,6 @@ public interface ItemService extends IService<Item> {
 
     List<Item> getList();
 
-    void createItemRedis();
-
     Result<PageVo<Item>> itemListsSearch(String name, PageBo pageBo);
 
     Result<PageVo<Item>> insert(ItemBo itemBo, PageBo pageBo);
@@ -24,21 +22,7 @@ public interface ItemService extends IService<Item> {
 
     PageVo<Item> myItem(PageBo pageBo);
 
-    List<Item> myItem();
-
-    List<Item> myItemSearch(String name);
-
     PageVo<Item> myItemSearch(String name, PageBo pageBo);
-
-    List<Item> getProcessList();
-
-    PageVo<Item> getProcessList(PageBo pageBo);
-
-    List<Item> getProcessListSearch(String name);
-
-    PageVo<Item> getProcessListSearch(PageBo pageBo, String name);
-
-    void updateItemsRedis();
 
     Result<PageVo<Item>> update(ItemBo itemBo, PageBo pageBo);
 

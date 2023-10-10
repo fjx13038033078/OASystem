@@ -18,7 +18,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("sys_item")
+@TableName("item")
 @Api(value = "项目实体", tags = {"项目实体"})
 public class ItemBo implements Serializable {
     @TableId
@@ -40,7 +40,7 @@ public class ItemBo implements Serializable {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime updateTime;
 
-    @ApiModelProperty("项目的内容，对应sys_project的id")
+    @ApiModelProperty("项目的内容，对应project的id")
     private Integer projectId;
 
     @ApiModelProperty("项目的状态")
@@ -54,13 +54,9 @@ public class ItemBo implements Serializable {
     @ApiModelProperty("用户/创建人实体")
     private User user;
 
-    @TableField(exist = false)
-    @ApiModelProperty("项目评分")
-    private Double score;
-
-    @TableField(exist = false)
-    @ApiModelProperty("项目审核")
-    private Process process;
+//    @TableField(exist = false)
+//    @ApiModelProperty("项目审核")
+//    private Process process;
 
 }
 

@@ -9,10 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * (SysProject)表实体类
+ * (Project)表实体类
  */
 @Data
-@TableName("sys_project")
+@TableName("project")
 @Api(value = "项目内容实体", tags = {"项目内容实体"})
 public class ProjectVo {
     @TableId

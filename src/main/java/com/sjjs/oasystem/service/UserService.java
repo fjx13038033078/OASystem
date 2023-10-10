@@ -20,4 +20,6 @@ public interface UserService extends IService<User> {
     User getByAccount(User user);
 
     void addUser(User user);
+
+    User getCurrentUser();
 }

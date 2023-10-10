@@ -6,12 +6,12 @@
 <!--        select *-->
 <!--        from sys_project-->
 <!--    </sql>-->
-<!--    <insert id="insertProjectList">-->
-<!--        insert into sys_project (id, name, content, type, money, remark, files) VALUES-->
-<!--        <foreach collection="list" separator="," item="item">-->
-<!--            (#{item.id},#{item.name},#{item.content},#{item.type},#{item.money},#{item.remark},#{item.files})-->
-<!--        </foreach>-->
-<!--    </insert>-->
+    <insert id="insertProjectList">
+        insert into project (id, name, content, type, money, remark, files) VALUES
+        <foreach collection="list" separator="," item="item">
+            (#{item.id},#{item.name},#{item.content},#{item.type},#{item.money},#{item.remark},#{item.files})
+        </foreach>
+    </insert>
 <!--    <select id="getProjectByIds" resultType="com.sjjs.oasystem.entity.Project">-->
 <!--        <include refid="getAllProject"/>-->
 <!--        where id in-->

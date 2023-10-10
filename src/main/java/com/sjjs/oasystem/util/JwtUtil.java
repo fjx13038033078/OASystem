@@ -35,18 +35,18 @@ public class JwtUtil {
     /**
      * 生成用户token,设置token超时时间
      */
-    public  static String createToken(User user){
+    public static String createToken(User user) {
         //过期时间
         Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 1000);
         Map<String, Object> map = new HashMap<>();
         map.put("alg", "HS256");
         map.put("typ", "JWT");
-        String token= JWT.create()
+        String token = JWT.create()
                 .withHeader(map)                //添加头部
                 //可以把数据存在claim中
-                .withClaim("id",user.getUid())      //userId
-                .withClaim("account",user.getUaccount())
-                .withClaim("name",user.getUname())
+                .withClaim("id", user.getUid())      //userId
+                .withClaim("account", user.getUaccount())
+                .withClaim("name", user.getUname())
                 .withExpiresAt(expireDate)          //超时设置,设置过期的日期
                 .withIssuedAt(new Date()) //签发时间
                 .sign(Algorithm.HMAC256(SECRET)); //SECRET加密
@@ -56,12 +56,12 @@ public class JwtUtil {
     /**
      * 检验token并解析token
      */
-    public static Map<String, Claim> verifyToken(String token){
-        DecodedJWT jwt=null;
+    public static Map<String, Claim> verifyToken(String token) {
+        DecodedJWT jwt = null;
         try {
-            JWTVerifier verifier=JWT.require(Algorithm.HMAC256(SECRET)).build();
-            jwt=verifier.verify(token);
-        }catch (Exception e){
+            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
+            jwt = verifier.verify(token);
+        } catch (Exception e) {
             logger.error(e.getMessage());
             logger.error("解析编码异常");
         }

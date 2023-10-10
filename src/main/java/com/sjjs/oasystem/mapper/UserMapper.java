@@ -3,6 +3,7 @@ package com.sjjs.oasystem.mapper;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.sjjs.oasystem.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -14,5 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 @TableName("user")
 public interface UserMapper extends BaseMapper<User> {
-
+    User getUserByAccount(@Param("account") String account);
 }

@@ -21,7 +21,5 @@ public class ProjectBo {
     @ApiModelProperty("项目名称")
     private String name;
 
-    @ApiModelProperty("项目评分")
-    private Double score;
 }
 

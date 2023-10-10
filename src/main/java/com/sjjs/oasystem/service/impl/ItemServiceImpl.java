@@ -8,18 +8,35 @@ import com.sjjs.oasystem.common.bo.PageBo;
 import com.sjjs.oasystem.common.vo.PageVo;
 import com.sjjs.oasystem.common.vo.Result;
 import com.sjjs.oasystem.entity.Item;
+import com.sjjs.oasystem.entity.Project;
+import com.sjjs.oasystem.entity.User;
+import com.sjjs.oasystem.mapper.ItemMapper;
+import com.sjjs.oasystem.mapper.ProjectMapper;
 import com.sjjs.oasystem.mapper.UserMapper;
 import com.sjjs.oasystem.service.ItemService;
+import com.sjjs.oasystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 @Service
 public class ItemServiceImpl implements ItemService {
+
+    @Autowired
+    private ItemMapper itemMapper;
+    @Autowired
+    private ProjectMapper projectMapper;
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+    private RedisTemplate<Object, Object> redisTemplate;
+    @Autowired
+    private UserService userService;
 
     @Override
     public boolean saveBatch(Collection<Item> entityList, int batchSize) {
@@ -77,11 +94,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void createItemRedis() {
-
-    }
-
-    @Override
     public Result<PageVo<Item>> itemListsSearch(String name, PageBo pageBo) {
         return null;
     }
@@ -102,43 +114,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> myItem() {
-        return null;
-    }
-
-    @Override
-    public List<Item> myItemSearch(String name) {
-        return null;
-    }
-
-    @Override
     public PageVo<Item> myItemSearch(String name, PageBo pageBo) {
         return null;
-    }
-
-    @Override
-    public List<Item> getProcessList() {
-        return null;
-    }
-
-    @Override
-    public PageVo<Item> getProcessList(PageBo pageBo) {
-        return null;
-    }
-
-    @Override
-    public List<Item> getProcessListSearch(String name) {
-        return null;
-    }
-
-    @Override
-    public PageVo<Item> getProcessListSearch(PageBo pageBo, String name) {
-        return null;
-    }
-
-    @Override
-    public void updateItemsRedis() {
-
     }
 
     @Override
@@ -148,6 +125,24 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void insert(ItemBo itemBo) {
+        insertItemBo(itemBo);
+    }
 
+    /**
+     * 添加新项目
+     */
+    private void insertItemBo(ItemBo itemBo) {
+        Project project = itemBo.getProject();
+        projectMapper.insert(project); // 数据库会自动生成项目的主键
+        // 获取当前登录用户的信息
+        User currentUser = userService.getCurrentUser();
+        // 创建项目事项
+        Item item = new Item();
+        item.setCreateBy(currentUser.getUid());
+        item.setProjectId(project.getId()); // 使用数据库生成的项目ID
+        LocalDateTime time = LocalDateTime.now();
+        item.setCreateTime(time);
+        item.setUpdateTime(time);
+        itemMapper.insert(item); // 数据库会自动生成项目事项的主键
     }
 }

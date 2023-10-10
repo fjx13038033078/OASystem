@@ -92,4 +92,9 @@ public class UserController {
         return Result.success("注销成功", null);
     }
 
+    @GetMapping("/user/current")
+    public User getCurrentUser() {
+        return userService.getCurrentUser();
+    }
+
 }
