@@ -15,8 +15,6 @@ import java.util.stream.Stream;
 
 /**
  * 字符串工具类
- *
- * @author Lion Li
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
