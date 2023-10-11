@@ -104,7 +104,19 @@
       <artifactId>aspectjweaver</artifactId>
     </dependency>
 
-  </dependencies>  
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-core</artifactId>
+      <version>5.8.15</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.12.0</version>
+    </dependency>
+
+  </dependencies>
   <build> 
     <plugins> 
       <plugin> 
