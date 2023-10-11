@@ -43,9 +43,6 @@ public class ItemBo implements Serializable {
     @ApiModelProperty("项目的内容，对应project的id")
     private Integer projectId;
 
-    @ApiModelProperty("项目的状态")
-    private String status;
-
     @TableField(exist = false)
     @ApiModelProperty("项目实体")
     private Project project;
@@ -53,10 +50,6 @@ public class ItemBo implements Serializable {
     @TableField(exist = false)
     @ApiModelProperty("用户/创建人实体")
     private User user;
-
-//    @TableField(exist = false)
-//    @ApiModelProperty("项目审核")
-//    private Process process;
 
 }
 
