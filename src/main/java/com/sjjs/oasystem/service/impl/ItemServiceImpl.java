@@ -105,7 +105,15 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Result<PageVo<Item>> delete(String projectId, String itemId, PageBo pageBo) {
-        return null;
+        try {
+            itemMapper.deleteById(itemId); // 先删除项目事项
+            projectMapper.deleteById(projectId); // 再删除项目
+            PageVo<Item> list = this.getList(pageBo);
+            return Result.success("删除成功", list);
+        } catch (Exception e) {
+            // 异常处理，可能需要回滚事务
+            return Result.fail("删除失败：" + e.getMessage());
+        }
     }
 
     @Override
@@ -139,7 +147,9 @@ public class ItemServiceImpl implements ItemService {
         // 创建项目事项
         Item item = new Item();
         item.setCreateBy(currentUser.getUid());
+//        item.setCreateBy(12);
         item.setProjectId(project.getId()); // 使用数据库生成的项目ID
+//        item.setProjectId(1);
         LocalDateTime time = LocalDateTime.now();
         item.setCreateTime(time);
         item.setUpdateTime(time);

@@ -41,7 +41,7 @@ public class Item {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime updateTime;
 
-    @ApiModelProperty("项目的内容，对应sys_project的id")
+    @ApiModelProperty("项目的内容，对应project的id")
     private Integer projectId;
 
     @TableField(exist = false)

@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 @TableName("item")
 @Mapper
-public interface ItemMapper extends BaseMapper {
+public interface ItemMapper extends BaseMapper<Item> {
     List<Item> selectAllItem();
 
     int getLastId();
