@@ -3,10 +3,11 @@ package com.sjjs.oasystem.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sjjs.oasystem.common.vo.ProjectVo;
 import com.sjjs.oasystem.entity.Project;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface ProjectMapper extends BaseMapper {
     List<Project> getProjectByIds(@Param("projectIds") List<Integer> projectIds);
 

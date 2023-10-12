@@ -62,7 +62,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getCurrentUser() {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof User) {
             return (User) authentication.getPrincipal();
         }

@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 @Data
 @Api(value = "用户实体", tags = {"用户实体"})
-public class User implements Serializable {
+public class User implements Serializable  {
 
     private static final long serialVersionUID = 1L;
     @ApiModelProperty("用户编号")

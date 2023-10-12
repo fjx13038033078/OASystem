@@ -3,10 +3,12 @@ package com.sjjs.oasystem.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sjjs.oasystem.common.bo.ItemBo;
 import com.sjjs.oasystem.entity.Item;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface ItemMapper extends BaseMapper {
     List<Item> selectAllItem();
 
