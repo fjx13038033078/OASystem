@@ -47,11 +47,8 @@ public class UserController {
     @PostMapping("/login")
     public Result<Map<String, Object>> login(@RequestBody User user) {
         Map<String, Object> responseData = userService.login(user);
-        User userLogin = userService.getByAccount(user);
-        if (userLogin == null) {
-            return Result.fail(20004, "该用户不存在");
-        } else if (responseData == null){
-            return Result.fail(20003,"密码错误");
+        if (responseData.containsKey("error")){
+            return Result.fail(20003,(String) responseData.get("error"));
         } else {
             return Result.success("登录成功", responseData);
         }

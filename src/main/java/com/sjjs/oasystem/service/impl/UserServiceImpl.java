@@ -38,7 +38,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getUaccount, user.getUaccount());
         User loginUser = this.baseMapper.selectOne(wrapper);
-        if (passwordEncoder.matches(user.getUpassword(), loginUser.getUpassword())) {
+        if (loginUser == null){
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", "用户不存在");
+            return errorResponse;
+        }else if (passwordEncoder.matches(user.getUpassword(), loginUser.getUpassword())) {
             // 密码验证成功，可以生成令牌或执行其他操作
             // 生成令牌的代码可以在这里添加
             String token = jwtUtil.createToken(loginUser);
@@ -46,8 +50,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             responseData.put("token",token);
             return responseData;
         }
-        //结果不为空，生成一个token，并将用户信息传入redis
-        return null;
+        // 密码错误，返回错误消息
+        Map<String, Object> errorResponse = new HashMap<>();
+        errorResponse.put("error", "密码错误");
+        return errorResponse;
     }
 
     @Override
