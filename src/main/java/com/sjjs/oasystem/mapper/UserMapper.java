@@ -16,6 +16,7 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 @TableName("user")
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
     User getUserByAccount(@Param("account") String account);
 }
