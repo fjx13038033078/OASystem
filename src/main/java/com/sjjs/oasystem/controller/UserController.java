@@ -1,9 +1,8 @@
 package com.sjjs.oasystem.controller;
 
-import com.sjjs.oasystem.common.vo.Result;
+import com.sjjs.oasystem.common.Result;
 import com.sjjs.oasystem.entity.User;
 import com.sjjs.oasystem.service.UserService;
-import com.sjjs.oasystem.util.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +32,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private JwtUtil jwtUtil;
 
     @GetMapping("/all")
     public Result<List<User>> getAllUser() {

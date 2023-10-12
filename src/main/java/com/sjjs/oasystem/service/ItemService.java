@@ -1,10 +1,10 @@
 package com.sjjs.oasystem.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.sjjs.oasystem.common.bo.ItemBo;
-import com.sjjs.oasystem.common.bo.PageBo;
-import com.sjjs.oasystem.common.vo.PageVo;
-import com.sjjs.oasystem.common.vo.Result;
+import com.sjjs.oasystem.entity.bo.ItemBo;
+import com.sjjs.oasystem.entity.bo.PageBo;
+import com.sjjs.oasystem.entity.vo.PageVo;
+import com.sjjs.oasystem.common.Result;
 import com.sjjs.oasystem.entity.Item;
 
 import java.util.List;

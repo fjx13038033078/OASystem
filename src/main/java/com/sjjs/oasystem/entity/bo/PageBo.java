@@ -1,4 +1,4 @@
-package com.sjjs.oasystem.common.bo;
+package com.sjjs.oasystem.entity.bo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;

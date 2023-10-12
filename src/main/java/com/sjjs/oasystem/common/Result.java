@@ -1,4 +1,4 @@
-package com.sjjs.oasystem.common.vo;
+package com.sjjs.oasystem.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
