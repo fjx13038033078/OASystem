@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -14,8 +16,9 @@ import org.apache.ibatis.annotations.Param;
  * @author fanjiaxing
  * @since 2023-09-20
  */
-@Mapper
+
 @TableName("user")
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
     User getUserByAccount(@Param("account") String account);
 }

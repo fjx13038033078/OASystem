@@ -28,7 +28,7 @@ public class SwaggerConfig {
     private final Logger logger = LoggerFactory.getLogger(SwaggerConfig.class);
     @Value("${oasystem.name}")
     public String name;
-    @Value("${oasystem.version}")
+    @Value("${oasystem.vers")
     public String version;
     @Value("${oasystem.author}")
     public String author;

@@ -53,14 +53,11 @@ public class UserController {
     @ApiOperation("用户注册")
     @PostMapping("/register")
     public Result<Map<String, Object>> register(@RequestBody User user) {
-        User checkUser = userService.getByAccount(user);
-        if (checkUser != null) {
+        if (userService.getByAccount(user) != null) {
             return Result.fail(20003, "该用户已存在");
         }
         // 对密码进行哈希加密
-        String hashedPassword = passwordEncoder.encode(user.getUpassword());
-        user.setUpassword(hashedPassword);
-
+        user.setUpassword(passwordEncoder.encode(user.getUpassword()));
         userService.addUser(user);
         return Result.success("用户添加成功", null);
     }
