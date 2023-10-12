@@ -3,7 +3,7 @@ package com.sjjs.oasystem.util;
 
 
 import cn.hutool.core.util.StrUtil;
-import com.sjjs.oasystem.common.bo.ItemBo;
+import com.sjjs.oasystem.entity.bo.ItemBo;
 import com.sjjs.oasystem.entity.Item;
 import com.sjjs.oasystem.entity.Project;
 import com.sjjs.oasystem.entity.User;

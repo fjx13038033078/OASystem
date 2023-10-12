@@ -1,7 +1,6 @@
 package com.sjjs.oasystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.sjjs.oasystem.common.vo.Result;
 import com.sjjs.oasystem.entity.User;
 import com.sjjs.oasystem.mapper.UserMapper;
 import com.sjjs.oasystem.service.UserService;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * <p>
@@ -29,7 +27,9 @@ import java.util.UUID;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     UserMapper userMapper;
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
     private JwtUtil jwtUtil;
 
     @Override

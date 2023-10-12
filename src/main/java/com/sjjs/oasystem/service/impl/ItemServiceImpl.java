@@ -2,11 +2,10 @@ package com.sjjs.oasystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.sjjs.oasystem.common.bo.ItemBo;
-import com.sjjs.oasystem.common.bo.PageBo;
-import com.sjjs.oasystem.common.vo.PageVo;
-import com.sjjs.oasystem.common.vo.Result;
+import com.sjjs.oasystem.entity.bo.ItemBo;
+import com.sjjs.oasystem.entity.bo.PageBo;
+import com.sjjs.oasystem.entity.vo.PageVo;
+import com.sjjs.oasystem.common.Result;
 import com.sjjs.oasystem.entity.Item;
 import com.sjjs.oasystem.entity.Project;
 import com.sjjs.oasystem.entity.User;

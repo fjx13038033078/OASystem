@@ -1,4 +1,4 @@
-package com.sjjs.oasystem.common.vo;
+package com.sjjs.oasystem.entity.vo;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;

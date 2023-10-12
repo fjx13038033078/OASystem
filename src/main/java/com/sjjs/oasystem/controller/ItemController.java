@@ -1,9 +1,9 @@
 package com.sjjs.oasystem.controller;
 
-import com.sjjs.oasystem.common.bo.ItemBo;
-import com.sjjs.oasystem.common.bo.PageBo;
-import com.sjjs.oasystem.common.vo.PageVo;
-import com.sjjs.oasystem.common.vo.Result;
+import com.sjjs.oasystem.entity.bo.ItemBo;
+import com.sjjs.oasystem.entity.bo.PageBo;
+import com.sjjs.oasystem.entity.vo.PageVo;
+import com.sjjs.oasystem.common.Result;
 import com.sjjs.oasystem.entity.Item;
 import com.sjjs.oasystem.service.ItemService;
 import io.swagger.annotations.Api;

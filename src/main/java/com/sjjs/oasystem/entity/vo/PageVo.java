@@ -1,7 +1,7 @@
-package com.sjjs.oasystem.common.vo;
+package com.sjjs.oasystem.entity.vo;
 
 import com.github.pagehelper.Page;
-import com.sjjs.oasystem.common.bo.PageBo;
+import com.sjjs.oasystem.entity.bo.PageBo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

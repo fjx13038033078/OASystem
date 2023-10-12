@@ -1,7 +1,7 @@
 package com.sjjs.oasystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sjjs.oasystem.common.vo.ProjectVo;
+import com.sjjs.oasystem.entity.vo.ProjectVo;
 import com.sjjs.oasystem.entity.Project;
 import org.apache.ibatis.annotations.Param;
 
