@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface ProjectMapper extends BaseMapper {
+public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> getProjectByIds(@Param("projectIds") List<Integer> projectIds);
 
     List<Project> getProjectList();

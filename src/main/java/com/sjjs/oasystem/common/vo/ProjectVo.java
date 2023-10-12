@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * (Project)表实体类
+ * (project)表实体类
  */
 @Data
 @TableName("project")

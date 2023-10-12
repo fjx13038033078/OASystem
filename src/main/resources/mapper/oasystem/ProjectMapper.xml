@@ -2,50 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sjjs.oasystem.mapper.ProjectMapper">
-<!--    <sql id="getAllProject">-->
-<!--        select *-->
-<!--        from sys_project-->
-<!--    </sql>-->
+
     <insert id="insertProjectList">
         insert into project (id, name, content, type, money, remark, files) VALUES
         <foreach collection="list" separator="," item="item">
             (#{item.id},#{item.name},#{item.content},#{item.type},#{item.money},#{item.remark},#{item.files})
         </foreach>
     </insert>
-<!--    <select id="getProjectByIds" resultType="com.sjjs.oasystem.entity.Project">-->
-<!--        <include refid="getAllProject"/>-->
-<!--        where id in-->
-<!--        <foreach collection="projectIds" index="index" open="(" close=")" separator="," item="item">-->
-<!--            #{item}-->
-<!--        </foreach>-->
-<!--    </select>-->
-<!--    <select id="getProjectList" resultType="com.sjjs.oasystem.entity.Project">-->
-<!--        <include refid="getAllProject"/>-->
-<!--    </select>-->
-<!--    <select id="getLastId" resultType="java.lang.Integer">-->
-<!--        select sp.id-->
-<!--        from sys_project sp-->
-<!--        order by id desc-->
-<!--        limit 1-->
-<!--    </select>-->
-<!--    <select id="getProjectKindList" resultType="">-->
-<!--        select sp.type as name, count(*) as value-->
-<!--        from sys_project sp-->
-<!--                 join sys_item si on sp.id = si.project_id-->
-<!--        where date_format(si.create_time, '%Y') like concat('%', #{year}, '%')-->
-<!--        group by sp.type-->
-<!--    </select>-->
-<!--    <select id="getProjectKindListOnePerson" resultType="">-->
-<!--        select sp.type as name, count(*) as value-->
-<!--        from sys_project sp-->
-<!--                 join sys_item si on sp.id = si.project_id-->
-<!--                 join sys_user su on si.create_by = su.user_id-->
-<!--        where su.account = #{account}-->
-<!--          and date_format(si.create_time, '%Y') like concat('%', #{year}, '%')-->
-<!--        group by sp.type-->
-<!--    </select>-->
-<!--    <select id="getProjectByName" resultType="com.sjjs.oasystem.common.vo.ProjectVo">-->
-<!--        <include refid="getAllProject"/>-->
-<!--        where name=#{name}-->
-<!--    </select>-->
+
 </mapper>

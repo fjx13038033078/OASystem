@@ -21,6 +21,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @ApiModelProperty("用户编号")
     @TableId(value = "uid", type = IdType.AUTO)
     private Integer uid;
