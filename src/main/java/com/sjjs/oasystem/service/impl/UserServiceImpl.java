@@ -1,13 +1,16 @@
 package com.sjjs.oasystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.sjjs.oasystem.common.vo.Result;
 import com.sjjs.oasystem.entity.User;
 import com.sjjs.oasystem.mapper.UserMapper;
 import com.sjjs.oasystem.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sjjs.oasystem.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -26,22 +29,22 @@ import java.util.UUID;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     UserMapper userMapper;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private JwtUtil jwtUtil;
 
     @Override
     public Map<String, Object> login(User user) {
         //根据用户名和密码进行查询
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getUaccount, user.getUaccount());
-//        wrapper.eq(User::getUpassword,user.getUpassword());
         User loginUser = this.baseMapper.selectOne(wrapper);
-        if (loginUser != null) {
-            //暂时用uuid，最终应该是jwt
-            String key = "user:" + UUID.randomUUID();
-            //存入redis
-            //返回数据
-            Map<String, Object> data = new HashMap<>();
-            data.put("token", key);
-            return data;
+        if (passwordEncoder.matches(user.getUpassword(), loginUser.getUpassword())) {
+            // 密码验证成功，可以生成令牌或执行其他操作
+            // 生成令牌的代码可以在这里添加
+            String token = jwtUtil.createToken(loginUser);
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("token",token);
+            return responseData;
         }
         //结果不为空，生成一个token，并将用户信息传入redis
         return null;

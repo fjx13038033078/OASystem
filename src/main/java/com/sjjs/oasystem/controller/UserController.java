@@ -46,21 +46,14 @@ public class UserController {
     @ApiOperation("用户登录")
     @PostMapping("/login")
     public Result<Map<String, Object>> login(@RequestBody User user) {
-        //Map<String,Object> data = userService.login(user);
+        Map<String, Object> responseData = userService.login(user);
         User userLogin = userService.getByAccount(user);
         if (userLogin == null) {
             return Result.fail(20004, "该用户不存在");
-        }
-        // 验证密码
-        if (passwordEncoder.matches(user.getUpassword(), userLogin.getUpassword())) {
-            // 密码验证成功，可以生成令牌或执行其他操作
-            // 生成令牌的代码可以在这里添加
-            String token = jwtUtil.createToken(userLogin);
-            Map<String, Object> responseData = new HashMap<>();
-            responseData.put("token",token);
-            return Result.success("登录成功", responseData);
+        } else if (responseData == null){
+            return Result.fail(20003,"密码错误");
         } else {
-            return Result.fail(20002, "密码错误");
+            return Result.success("登录成功", responseData);
         }
     }
 
@@ -92,7 +85,7 @@ public class UserController {
         return Result.success("注销成功", null);
     }
 
-    @GetMapping("/user/current")
+    @GetMapping("/current")
     public User getCurrentUser() {
         return userService.getCurrentUser();
     }
