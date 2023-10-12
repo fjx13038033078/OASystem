@@ -14,7 +14,7 @@ import org.apache.ibatis.annotations.Param;
  * @author fanjiaxing
  * @since 2023-09-20
  */
-@Mapper
+
 @TableName("user")
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
