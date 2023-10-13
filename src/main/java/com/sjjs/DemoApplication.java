@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-@ServletComponentScan // 启用过滤器的自动扫描
+@ServletComponentScan(basePackages = "com.sjjs.oasystem.util")
 @MapperScan("com.sjjs.*.mapper")
 public class DemoApplication {
 

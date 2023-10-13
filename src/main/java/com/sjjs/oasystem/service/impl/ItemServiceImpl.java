@@ -1,6 +1,7 @@
 package com.sjjs.oasystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sjjs.oasystem.common.Result;
 import com.sjjs.oasystem.entity.Item;
@@ -130,8 +131,26 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Result<PageVo<Item>> update(ItemBo itemBo, PageBo pageBo) {
+    public List<Item> myItem() {
+        String account = String.valueOf(userService.getCurrentUser().getUid());
+        // 直接从数据库中获取用户的项目列表
+        List<Item> items = itemMapper.selectList(new QueryWrapper<Item>().eq("uaccount", account));
+        return items;
+    }
+
+    @Override
+    public List<Item> myItemSearch(String name) {
         return null;
+    }
+
+    @Override
+    public Result<PageVo<Item>> update(ItemBo itemBo, PageBo pageBo) {
+        itemBo.setUpdateTime(LocalDateTime.now());
+        itemMapper.updateItemBo(itemBo);
+        Project project = itemBo.getProject();
+        projectMapper.updateById(project);
+        PageVo<Item> list = this.myItem(pageBo);
+        return Result.success("修改成功", list);
     }
 
     @Override
@@ -152,7 +171,6 @@ public class ItemServiceImpl implements ItemService {
         item.setCreateBy(currentUser.getUid());
 //        item.setCreateBy(12);
         item.setProjectId(project.getId()); // 使用数据库生成的项目ID
-//        item.setProjectId(1);
         LocalDateTime time = LocalDateTime.now();
         item.setCreateTime(time);
         item.setUpdateTime(time);

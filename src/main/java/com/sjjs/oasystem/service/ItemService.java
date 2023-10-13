@@ -24,6 +24,10 @@ public interface ItemService extends IService<Item> {
 
     PageVo<Item> myItemSearch(String name, PageBo pageBo);
 
+    List<Item> myItem();
+
+    List<Item> myItemSearch(String name);
+
     Result<PageVo<Item>> update(ItemBo itemBo, PageBo pageBo);
 
     void insert(ItemBo itemBo);

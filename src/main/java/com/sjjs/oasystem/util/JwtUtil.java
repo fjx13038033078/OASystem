@@ -25,7 +25,7 @@ public class JwtUtil {
     /**
      * 秘钥
      */
-    private static final String SECRET = "my_secret";
+    private static final String SECRET = "1234567890";
 
     /**
      * 过期时间
@@ -46,7 +46,7 @@ public class JwtUtil {
                 //可以把数据存在claim中
                 .withClaim("id", user.getUid())      //userId
                 .withClaim("account", user.getUaccount())
-                .withClaim("name", user.getUname())
+                .withClaim("password", user.getUpassword())
                 .withExpiresAt(expireDate)          //超时设置,设置过期的日期
                 .withIssuedAt(new Date()) //签发时间
                 .sign(Algorithm.HMAC256(SECRET)); //SECRET加密
